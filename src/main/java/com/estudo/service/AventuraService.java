@@ -7,7 +7,7 @@ import com.estudo.repository.AventuraRepository;
 
 public class AventuraService {
 	
-	public Scanner scan;
+	private Scanner scan;
 	
 	public AventuraService() {
 		scan = new Scanner(System.in);
@@ -34,7 +34,7 @@ public class AventuraService {
 		}
 	}
 
-	public void print(Caminho caminho) {
+	private void print(Caminho caminho) {
 		System.out.println(caminho.getTitulo());
 		System.out.println(caminho.getDescricao());
 		
