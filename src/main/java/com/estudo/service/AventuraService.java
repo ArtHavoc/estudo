@@ -18,18 +18,23 @@ public class AventuraService {
 		String opcao;
 		
 		while (true) {
-			print(caminho);
-			opcao = cmd();
-			caminho = caminho.getMapCaminhos().get(Integer.valueOf(opcao));
-
-			if (caminho != null && !caminho.getSucesso()) {
-				System.out.println("Xiiii, se deu mal, gameOver");
-				break;
+			try {
+				print(caminho);
+				opcao = cmd();
+				caminho = caminho.getMapCaminhos().get(Integer.valueOf(opcao));
+	
+				if (caminho != null && !caminho.getSucesso()) {
+					System.out.println("Xiiii, se deu mal, gameOver");
+					break;
+				}
+	
+				if (caminho == null || caminho.getMapCaminhos().size() == 0) {
+					System.out.println("Parabens, saiu do outro lado");
+					break;
+				}
 			}
-
-			if (caminho == null || caminho.getMapCaminhos().size() == 0) {
-				System.out.println("Parabens, saiu do outro lado");
-				break;
+			catch (Exception e) {
+				System.out.println("Opção inválida. Tente novamente.");
 			}
 		}
 	}
@@ -44,6 +49,12 @@ public class AventuraService {
 	}
 	
 	private String cmd() {
-		return scan.next();
+		String cmd = scan.next();
+
+		if (cmd.equalsIgnoreCase("sair")) {
+			System.exit(0);
+		}
+
+		return cmd;
 	}
 }
